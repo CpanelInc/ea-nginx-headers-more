@@ -10,6 +10,7 @@ URL:            http://www.cpanel.net
 Vendor:         cPanel, Inc.
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
+BuildRequires:  ea-nginx-ngxdev
 Requires:       ea-nginx
 
 Source0:        v%{version}.tar.gz
@@ -26,19 +27,31 @@ the -t option while modifying the output headers with the more_set_headers and m
 %setup -q -n headers-more-nginx-module-%{version}
 
 %build
-echo "TODO: build dynamic module using ea-nginx w/ --prefix=/etc/nginx --sbin-path=/usr/sbin/nginx etc"
+set -x
+
+mypwd=`pwd`
+# You will be in ./nginx-build after this source()
+#    so that configure and make etc can happen.
+# We probably want to popd back when we are done in there
+. /opt/cpanel/ea-nginx-ngxdev/set_NGINX_CONFIGURE_array.sh
+./configure "${NGINX_CONFIGURE[@]}" --add-dynamic-module=$mypwd
+
+make
+popd
 
 %install
 set -x 
 
 install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/nginx/conf.d/modules/ea-nginx-headers-more-module.conf
+install -D ./nginx-build/objs/ngx_http_headers_more_filter_module.so $RPM_BUILD_ROOT%{_libdir}/nginx/modules/ngx_http_headers_more_filter_module.so
 
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(0644,root,root,0755)
-/etc/nginx/conf.d/modules/ea-nginx-echo-module.conf
+/etc/nginx/conf.d/modules/ea-nginx-headers-more-module.conf
+%attr(0755,root,root) %{_libdir}/nginx/modules/ngx_http_headers_more_filter_module.so
 
 %changelog
 * Mon Apr 24 2023 Brian Mendoza <brian.mendoza@cpanel.net> - 0.34-1
