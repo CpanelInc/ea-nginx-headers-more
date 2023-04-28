@@ -14,7 +14,7 @@ BuildRequires:  ea-nginx-ngxdev
 Requires:       ea-nginx
 
 Source0:        v%{version}.tar.gz
-Source1:        ea-nginx-headers-more-module.conf
+Source1:        ea-nginx-headers-more-filter-module.conf
 
 %description
 This module allows you to add, set, or clear any output or input header that you specify. This is
@@ -42,7 +42,7 @@ popd
 %install
 set -x 
 
-install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/nginx/conf.d/modules/ea-nginx-headers-more-module.conf
+install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/nginx/conf.d/modules/ea-nginx-headers-more-filter-module.conf
 install -D ./nginx-build/objs/ngx_http_headers_more_filter_module.so $RPM_BUILD_ROOT%{_libdir}/nginx/modules/ngx_http_headers_more_filter_module.so
 
 %clean
@@ -50,7 +50,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(0644,root,root,0755)
-/etc/nginx/conf.d/modules/ea-nginx-headers-more-module.conf
+/etc/nginx/conf.d/modules/ea-nginx-headers-more-filter-module.conf
 %attr(0755,root,root) %{_libdir}/nginx/modules/ngx_http_headers_more_filter_module.so
 
 %changelog
