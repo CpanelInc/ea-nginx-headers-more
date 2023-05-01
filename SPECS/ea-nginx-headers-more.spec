@@ -4,7 +4,7 @@ Version:        0.34
 %define release_prefix 1
 Release:        %{release_prefix}%{?dist}.cpanel
 Summary:        This module allows you to add, set, or clear any output or input header that you specify.
-License:        Custom, see LICENSE file.
+License:        BSD
 Group:          System Environment/Libraries
 URL:            http://www.cpanel.net
 Vendor:         cPanel, Inc.
