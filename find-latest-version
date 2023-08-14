@@ -20,7 +20,7 @@ ea4_tool::util::find_latest_version( \&_get_required, \&_add_sum ) if !caller();
 
 sub _get_required {
     my ($http) = @_;
-    
+
     my $res = $http->get("https://api.github.com/repos/openresty/headers-more-nginx-module/tags");
     if ( !$res->{success} ) {
         die "Could not GET echo-nginx-module info from github ($res->{status} $res->{reason})\n\t Throttled? `curl -I https://api.github.com/rate_limit 2>&1 | grep ^X-RateLimit`\n";
@@ -28,7 +28,7 @@ sub _get_required {
 
     # get $version, $url, $name from $res
     my $version;
-    for my $tag ( @{ Cpanel::JSON::Load( $res->{content} ) } ) {
+    for my $tag ( @{ ea4_tool::util::json2ref( $res->{content} ) } ) {
         next if $tag->{name} !~ m/^v\d+\.\d+$/;
         $version = $tag->{name};
         last;
@@ -36,7 +36,7 @@ sub _get_required {
 
     die "Could not determine version from github\n" if !$version;
 
-    my $name = "$version.tar.gz";  # needs to match $version
+    my $name = "$version.tar.gz";                                                                            # needs to match $version
     my $url  = "https://github.com/openresty/headers-more-nginx-module/archive/refs/tags/$version.tar.gz";
 
     return ( $version, $url, $name );
