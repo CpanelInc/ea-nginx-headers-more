@@ -55,7 +55,7 @@ rm -rf %{buildroot}
 
 %changelog
 * Thu Sep 26 2024 Cory McIntire <cory@cpanel.net> - 0.37-1
-- EA-12413: Update ea-nginx-headers-more from v0.34 to v0.37
+- EA-12422: Update ea-nginx-headers-more from v0.34 to v0.37
 
 * Wed Aug 14 2024 Cory McIntire <cory@cpanel.net> - 0.34-9
 - EA-12337: Build against ea-nginx version v1.26.2
