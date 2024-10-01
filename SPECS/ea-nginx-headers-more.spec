@@ -1,5 +1,5 @@
 Name:           ea-nginx-headers-more
-Version:        v0.37
+Version:        0.37
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4552 for more details
 %define release_prefix 1
 Release:        %{release_prefix}%{?dist}.cpanel
@@ -40,7 +40,7 @@ make
 popd
 
 %install
-set -x 
+set -x
 
 install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/nginx/conf.d/modules/ea-nginx-headers-more-filter-module.conf
 install -D ./nginx-build/objs/ngx_http_headers_more_filter_module.so $RPM_BUILD_ROOT%{_libdir}/nginx/modules/ngx_http_headers_more_filter_module.so
@@ -54,8 +54,8 @@ rm -rf %{buildroot}
 %attr(0755,root,root) %{_libdir}/nginx/modules/ngx_http_headers_more_filter_module.so
 
 %changelog
-* Thu Sep 26 2024 Cory McIntire <cory@cpanel.net> - v0.37-1
-- EA-12413: Update ea-nginx-headers-more from v0.34 to vv0.37
+* Thu Sep 26 2024 Cory McIntire <cory@cpanel.net> - 0.37-1
+- EA-12413: Update ea-nginx-headers-more from v0.34 to v0.37
 
 * Wed Aug 14 2024 Cory McIntire <cory@cpanel.net> - 0.34-9
 - EA-12337: Build against ea-nginx version v1.26.2
