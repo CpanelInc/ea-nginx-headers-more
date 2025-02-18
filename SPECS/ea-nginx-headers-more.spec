@@ -54,7 +54,6 @@ rm -rf %{buildroot}
 %attr(0755,root,root) %{_libdir}/nginx/modules/ngx_http_headers_more_filter_module.so
 
 %changelog
-
 * Mon Feb 18 2025 Cory McIntire <cory.mcintire@webpros.com> - 0.38-1
 - EA-12691: Update ea-nginx-headers-more from v0.37 to v0.38
 
