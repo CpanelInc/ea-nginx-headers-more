@@ -1,5 +1,5 @@
 Name:           ea-nginx-headers-more
-Version:        0.38
+Version:        0.39
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4552 for more details
 %define release_prefix 1
 Release:        %{release_prefix}%{?dist}.cpanel
@@ -54,6 +54,9 @@ rm -rf %{buildroot}
 %attr(0755,root,root) %{_libdir}/nginx/modules/ngx_http_headers_more_filter_module.so
 
 %changelog
+* Fri Jul 04 2025 Cory McIntire <cory.mcintire@webpros.com> - 0.39-1
+- EA-13002: Update ea-nginx-headers-more from v0.38 to v0.39
+
 * Mon Feb 18 2025 Cory McIntire <cory.mcintire@webpros.com> - 0.38-1
 - EA-12691: Update ea-nginx-headers-more from v0.37 to v0.38
 
