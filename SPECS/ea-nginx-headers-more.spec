@@ -1,7 +1,7 @@
 Name:           ea-nginx-headers-more
 Version:        0.39
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4552 for more details
-%define release_prefix 3
+%define release_prefix 4
 Release:        %{release_prefix}%{?dist}.cpanel
 Summary:        This module allows you to add, set, or clear any output or input header that you specify.
 License:        BSD
@@ -54,6 +54,9 @@ rm -rf %{buildroot}
 %attr(0755,root,root) %{_libdir}/nginx/modules/ngx_http_headers_more_filter_module.so
 
 %changelog
+* Tue Dec 09 2025 Cory McIntire <cory.mcintire@webpros.com> - 0.39-4
+- EA-13286: Build against ea-nginx version v1.29.4
+
 * Tue Oct 28 2025 Cory McIntire <cory.mcintire@webpros.com> - 0.39-3
 - EA-13235: Build against ea-nginx version v1.29.3
 
